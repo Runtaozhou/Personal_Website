@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miles Zhou — PhD Student, University of Virginia</title>
+  <meta name="description" content="Personal academic website for Miles Zhou, third‑year PhD student at the University of Virginia. Research, publications, teaching, projects, and contact." />
+  <meta name="author" content="Miles Zhou" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Miles Zhou — PhD Student, University of Virginia" />
+  <meta property="og:description" content="Research • Publications • Teaching • Projects" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/og-card.png" />
+  <meta property="og:url" content="https://your-domain.example" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yourhandle" />
+
+  <!-- Favicon (replace with your own) -->
+  <link rel="icon" href="/assets/favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* UVA-inspired palette */
+      --uva-blue: #232D4B;
+      --uva-orange: #E57200;
+      --bg: #0b0c10;
+      --bg-soft: #0f1115;
+      --text: #e6e6e6;
+      --muted: #b8b8b8;
+      --card: #13151b;
+      --border: #2a2e37;
+      --link: var(--uva-orange);
+      --accent: #5dd1ff;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f7f7f9;
+        --text: #1b1e24;
+        --muted: #4d5562;
+        --card: #ffffff;
+        --border: #e6e8ec;
+        --accent: #007ea8;
+      }
+    }
+
+    /* Base */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 1200px at 80% -10%, rgba(35,45,75,0.15), transparent 60%),
+                  radial-gradient(1000px 700px at -10% 10%, rgba(229,114,0,0.10), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline wavy; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header / Nav */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 75%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--uva-orange); box-shadow: 0 0 0 4px color-mix(in oklab, var(--uva-orange) 20%, transparent); }
+    nav ul { list-style: none; display: flex; gap: 18px; padding: 0; margin: 0; align-items: center; }
+    nav a { color: var(--text); opacity: 0.9; font-weight: 500; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); padding: 10px 14px; border-radius: 12px; text-decoration: none; font-weight: 600; }
+    .btn:hover { border-color: color-mix(in oklab, var(--uva-orange) 40%, var(--border)); box-shadow: 0 6px 24px rgba(0,0,0,.15); text-decoration: none; }
+
+    /* Hero */
+    .hero { padding: 56px 0 24px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    .hero h1 { font-family: "Source Serif 4", ui-serif, Georgia, serif; font-weight: 700; font-size: clamp(2rem, 2.6rem + 1vw, 3.2rem); line-height: 1.1; margin: 0 0 14px; letter-spacing: -.015em; }
+    .hero p.lead { font-size: 1.1rem; color: var(--muted); margin: 0 0 18px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 24px; }
+    .tag { padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; font-size: .85rem; background: color-mix(in oklab, var(--card) 70%, transparent); }
+    .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pfp { width: 160px; height: 160px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(0,0,0,.15); }
+
+    /* Sections */
+    section { padding: 40px 0; border-top: 1px dashed var(--border); }
+    section:first-of-type { border-top: none; }
+    .section-title { font-size: 1.2rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-8 { grid-column: span 8; }
+    .col-12 { grid-column: span 12; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+    .card h3 { margin: 6px 0 10px; font-size: 1.05rem; }
+    .meta { color: var(--muted); font-size: .92rem; }
+
+    /* Timeline list */
+    .list { display: grid; gap: 12px; }
+    .list-item { padding: 14px; border: 1px solid var(--border); border-radius: 14px; background: color-mix(in oklab, var(--card) 85%, transparent); }
+
+    /* Footer */
+    footer { padding: 28px 0 56px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 32px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .pfp { width: 120px; height: 120px; }
+      .grid { grid-template-columns: repeat(6, 1fr); }
+      .col-8 { grid-column: span 6; }
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 6; }
+    }
+
+    /* Print-friendly CV */
+    @media print {
+      header, .hero .actions, footer { display: none; }
+      section { page-break-inside: avoid; }
+      a { color: black !important; text-decoration: none; }
+      body { background: white; }
+      .card { border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✨ Quick customization guide:
+    1) Replace text content below (name, bio, email, links).
+    2) Swap /assets/profile.jpg, /assets/og-card.png, /assets/favicon.ico.
+    3) Update JSON-LD in the <script type="application/ld+json"> block near the end.
+    4) Optional: host as GitHub Pages (rename to index.html), or Netlify/Vercel.
+  -->
+
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot" aria-hidden="true"></span><span>Miles Zhou</span></div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <!-- <li><a href="#research">Research</a></li> -->
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="btn" href="Miles_Zhou_CV_final.pdf" target="_blank" rel="noopener">CV</a></li>
+        </ul>
+      </nav>
+      <img src="uva_logo.png" alt="uva logo" loading="lazy" />
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div>
+        <h1>Hi, I’m Miles Zhou</h1>
+        <p class="lead">Third‑year PhD student in Data Science at the <strong>University of Virginia</strong>. I study Explanable AI, with a focus on multimodal alignment, fairness, and user‑centered explanation design.</p>
+        <div class="tags" aria-label="Research areas">
+          <span class="tag">Interactive Chain‑of‑Thought</span>
+          <span class="tag">Multimodal Alignment</span>
+          <span class="tag">Fairness & Bias</span>
+        </div>
+        <!-- <div class="actions">
+          <a class="btn" href="#research">Explore Research</a>
+          <a class="btn" href="#projects">View Projects</a>
+        </div> -->
+      </div>
+      <aside class="pfp" aria-label="Portrait">
+        <img src="profile.jpeg" alt="Portrait of Miles Zhou" loading="lazy" />
+      </aside>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="grid">
+        <div class="col-8">
+          <div class="card">
+            <p>I’m advised by <strong>Professor Chirag Agarwal</strong> and collaborate with colleagues across HCI and NLP. My work builds interactive alternatives to static chain‑of‑thought, aiming to help people verify, debug, and learn from model reasoning. I enjoy designing lightweight, pragmatic tools that make evaluation more reliable and less tedious.</p>
+            <p>Previously, I worked on LLM Bias on Dialects with <Strong>Professor Tom Hartvigsen</Strong>. Outside research, I’m a certified personal trainer and enjoy tennis.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>News</h3>
+            <ul class="meta" style="padding-left: 1em; margin: .2em 0;">
+              <li><strong>Aug 2025</strong> — Paper <em>Disparities in LLM Accuracy and Reasoning: A Case Study on African American English</em> got accepted at COLM 2025 Workshop.</li>
+              <li><strong>Apr 2023</strong> — Paper <em>SegPrompt: Using Segmentation Map as a Better Prompt to Finetune Deep Models for Kidney Stone Classification </em> got accpeted at MIDL 2023.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research overview -->
+    <!-- <section id="research">
+      <h2 class="section-title">Research</h2>
+      <div class="grid">
+        <div class="col-6">
+          <div class="card">
+            <h3>Interactive Explanations for LLM Reasoning</h3>
+            <p class="meta">Designing and evaluating explantion interfaces that allow users to play with the LLM explanations.</p>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card">
+            <h3>MLLM Alignment</h3>
+            <p class="meta">Designing comprehensive alignment metrics for multimodal large language models.</p>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card">
+            <h3>Text-in App-out</h3>
+            <p class="meta">Developing dual LLM agent frameworks that can generate and improve full stack web applications.</p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2 class="section-title">Publications & Preprints</h2>
+      <div class="list">
+        <article class="list-item">
+          <h3><a href="#">Improving Human Verification of LLM Reasoning through Interactive Explanation Interfaces</a></h3>
+          <p class="meta">Zhou, Nguyen. et al. Under review (2026). <span aria-hidden>•</span> <a href="https://arxiv.org/pdf/2510.22922">PDF</a> · <a href="https://huggingface.co/spaces/interactiveReasoning/interactive_explanation_experiment">Code</a> · <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=3s">Demo</a></p>
+        </article>
+        <article class="list-item">
+          <h3><a href="#">Disparities in llm reasoning accuracy and explanations: A case study on african american english</a></h3>
+          <p class="meta">Zhou, Wan. et al. Preprint (2025). <a href="https://arxiv.org/pdf/2503.04099?">PDF</a>  · <a href="https://github.com/Runtaozhou/dialect_bias_eval" >Code</a></p>
+        </article>
+         <article class="list-item">
+          <h3><a href="#">Segprompt: Using segmentation map as a better prompt to finetune deep models for kidney stone classification</a></h3>
+          <p class="meta">Zhu, Zhou. et al. Preprint (2024). <a href="https://proceedings.mlr.press/v227/zhu24b/zhu24b.pdf">PDF</a></p>
+        </article>
+        <!-- Add more items as needed -->
+      </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <h2 class="section-title">Teaching</h2>
+      <div class="grid">
+        <div class="col-4">
+          <div class="card">
+            <h3>Intro to Programming for Data Science</h3>
+            <p class="meta">Undergrad Level Course Teaching Assistant, Fall 2023</p>
+            <p>Led labs on basic python programming for datascience.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>Intro to Machine Learning</h3>
+            <p class="meta">Undergrad Level Course Teaching Assistant, Spring 2024</p>
+            <p>Designed and graded assignments on various traditional Machine Learning methods.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>Big Data System</h3>
+            <p class="meta">Master Level Course Teaching Assistant, Fall 2024</p>
+            <p>Led labs and familiarize students with basic AWS tools.</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>Statistical Machine Learing</h3>
+            <p class="meta">Phd Level Course Teaching Assistant, Spring 2025</p>
+            <p>Designed and graded assignments on statistical machine learning models.</p>
+          </div>
+        </div>
+         <div class="col-4">
+          <div class="card">
+            <h3>Data Ethics</h3>
+            <p class="meta">Undergrad Level Course Teaching Assistant, Fall 2025</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">On Going Project(s)</h2>
+      <div class="grid">
+        <div class="col-6">
+          <div class="card">
+            <h3>Text-In App-Out: Designing Human Out of the Loop Software Development</h3>
+            <p class="meta">Web, LLM, Software Development</p>
+            <p>Developing dual LLM agent frameworks that can generate and improve full stack web applications..</p>
+            <p><a href="#">GitHub</a></p>
+          </div>
+        </div>
+        <!-- <div class="col-6">
+          <div class="card">
+            <h3>Temporal Reasoning Benchmark (Images)</h3>
+            <p class="meta">Vision‑Language, Evaluation</p>
+            <p>A curated set of image tasks with ordered events to assess temporal understanding in MLLMs.</p>
+            <p><a href="#">Dataset</a> · <a href="#">Paper</a></p>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid">
+        <div class="col-8">
+          <div class="card">
+            <p>Email: <a id="email" href="#">uar6nw [at] virginia [dot] edu</a></p>
+            <p>Office: 1919 Ivy Rd, Charlottesville, VA 22903 </p>
+            <p>
+              <a href="https://scholar.google.com/citations?user=MwzCTYYAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> ·
+              <a href="https://github.com/Runtaozhou?tab=repositories" target="_blank" rel="noopener">GitHub</a> ·
+              <a href="https://www.linkedin.com/in/runtaozhou/" target="_blank" rel="noopener">LinkedIn</a> 
+            </p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <h3>Open to</h3>
+            <ul class="meta" style="padding-left: 1em; margin: .3em 0;">
+              <li>Research collaborations</li>
+              <li>Reviewer service</li>
+              <li>Student mentoring</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <small>© <span id="year"></span> Miles Zhou · University of Virginia.</small>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Email de‑obfuscation & year -->
+  <script>
+    (function(){
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+      const e = document.getElementById('email');
+      if (e) {
+        const addr = ['miles','virginia.edu'].join('@').replace('miles@', 'miles.zhou@');
+        e.href = 'mailto:' + addr;
+        e.textContent = addr;
+      }
+    })();
+  </script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Miles Zhou",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Virginia"
+    },
+    "jobTitle": "PhD Student",
+    "email": "mailto:miles.zhou@virginia.edu",
+    "url": "https://your-domain.example",
+    "sameAs": [
+      "https://scholar.google.com/", 
+      "https://github.com/", 
+      "https://www.linkedin.com/"
+    ],
+    "knowsAbout": ["Interactive Chain-of-Thought", "Evaluation", "Multimodal Alignment", "Fairness"]
+  }
+  </script>
+</body>
+</html>
